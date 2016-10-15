@@ -1,0 +1,8 @@
+[Unit]
+Description=morganashley	
+
+[Service]
+ExecStart=/opt/morganashley/bin/morganashley
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,81 @@
+{{template "header" .}}
+
+<style>
+ @media print{
+     .head, .footer{display:none;}
+     
+     
+ }
+
+ 
+ h1 {
+     text-align:center;
+     font-family:'Helvetica', sans-serif;
+     color:#234;
+ }
+ .grid{
+     background-color: #999;
+ }
+ {{range $j, $k := .Model.Designs}}
+ .design{{.Id}}{
+     /*
+     background: url('/deckImg/{{.Img}}');
+     background-size: {{.W}}px {{.H}}px;
+     background-repeat: no-repeat;*/
+     color: black;
+     width: {{.W}}px;
+     height: {{.H}}px;
+     position: relative;     
+ }
+ {{range $i, $v := .FieldLayouts}}
+ .design{{$k.Id}} .field{{$i}}{
+     position:absolute;
+     top: {{$v.Y}}px;
+     left: {{$v.X}}px;
+     width: {{$v.W}}px;
+     height: {{$v.H}}px;
+     font-family: {{$v.Font}};
+     font-size: {{$v.FontSize}}px;
+ }
+ {{end}}
+ {{end}}
+ 
+</style>
+<div class="container">
+    <div class="row">
+	<div class="col-lg-12 grid" id="grid">
+	    {{range .Model.Cards}}
+	    {{with $c := .}}
+	    {{range Loop (Add .Quantity 0)}}
+	    <div class="grid-item design{{$c.DesignId}}">
+		{{range $.Model.Designs}}
+		{{if eq .Id $c.DesignId}}
+		<img src="/deckImg/{{.Img}}" style="position:absolute;top:0;left:0;width:{{.W}}px;height:{{.H}}px">
+		{{end}}
+		{{end}}
+		{{range $i, $v := $c.Fields}}
+		<span class="field{{$i}}">{{$v}}</span>
+		{{end}}
+		{{range $c.Images}}
+		<img src="/deckImg/{{.File}}" height="{{.H}}" style="position: absolute; top:{{.Y}}px; left:{{.X}}px;">
+		{{end}}
+	    </div>
+	    {{end}}
+	    {{end}}
+	    {{end}}	    
+	</div>	
+    </div>
+</div>
+
+ 
+{{template "footer"}}
+<script>
+ $(document).ready(function() {
+     $('#grid').isotope({
+	 itemSelector: '.grid-item',
+	 layoutMode: 'fitRows'
+     });
+ });
+</script>
+  </body>
+</html>

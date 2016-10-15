@@ -1,0 +1,13 @@
+{{template "header" .User}}
+
+<div class="container">
+    <!--TODO: if no id is present, show add, otherwise show edit -->
+
+    <h1>Places I want to go in charleston.<a href="/places/new">+</a></h1>
+  
+    {{range .Places}}
+    {{template "place" .}}     
+    {{end}}
+</div>
+    
+{{template "footer"}}

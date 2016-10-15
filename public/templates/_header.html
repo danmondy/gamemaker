@@ -1,0 +1,137 @@
+{{define "header"}}
+<!DOCTYPE html>
+  <head>
+      <title>Game Maker - Make cards, all kinds, all shapes, for free. It's cool.</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Raleway:300,400" rel="stylesheet">
+      <style>
+       html {
+	   
+     }
+     .container{
+       min-width:640px;
+     }
+     body{
+	 font-family:Raleway, sans-serif;
+	 font-weight:400;
+     }
+     a{
+	 color: #353;
+     }
+     a:hover{
+	 text-decoration: none;
+	 font-weight:bold;
+	 color: #575;
+       }
+       h1{
+	   font-family: 'Homemade Apple', cursive;
+	   padding: 0 0 0 0;
+       }
+     .logobg{
+	/* background-color:rgba(255,255,255,1);*/
+	 /*background: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,0)), url(/img/bg2.jpg) no-repeat center center;	 */
+	 -webknit-background-size: cover;
+	 -moz-background-size: cover;
+	 -o-background-size: cover;
+	 background-size: cover;	 		 
+     }
+     .head img{
+	 width:600px;	 
+	 margin:auto;
+     }
+     .head .logo {	 
+	 padding: 20px 0 20px 0;
+	 width:100%;
+	 text-align:center;	
+     }
+     .navbar{
+	 border:none;	 
+	 border-radius:0;
+     }
+     .navbar-default{
+	 background-color:rgba(200,200,200,1);	
+     }
+     .navbar-default .nav>li>a{
+	 color:#333;
+	 text-transform: uppercase;
+	 font-family:Raleway, sans-serif;
+	 font-size:14pt;
+	 letter-spacing:4px;
+	 font-weight: 300;
+     }
+       
+     .navbar-default .navbar-nav>li>a:hover{
+ 	 color:#111;
+	 font-weight:400;
+     }
+
+     /*nav active*/
+     .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+	 color:#111;
+	 font-weight:400;
+	 background-color:inherit;
+	 
+     }
+
+     .alert{
+	 text-align:center;
+	 font-family: 'Homemade Apple', cursive;
+	 font-size:20pt;
+	 background-color:inherit;
+	 border:none;
+	 color: rgba(128,44,44,.8);
+     }
+     .alert button{
+	 font-family: sans-serif;
+	 font-size:30pt;
+     }
+     body div.container.body{
+         background-color:rgba(255,255,255,.8);
+     }
+	</style>
+  </head>
+  <body>
+      <div class="head">	  	  
+	  <div class="container-fluid logobg">
+	      <div class="row">
+		  <div class="logo col-lg-9">
+		      <a href="/"><h1>Test Application</h1><h5>Make cards. All shapes. It's free.</a>
+		  </div>
+	      </div>
+	  </div>	  	  
+      </div>
+      
+      
+      <nav class="navbar navbar-default">
+	  <div class="container">
+	      <div class="navbar-header">	  
+		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		  </button>	  
+	      </div>
+	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">		  
+		      <!--<li {{if eq .Page "us"}}class="active" {{end}}><a href="/us">Us <span class="sr-only">(current)</span></a></li>-->		 
+		      <li {{if eq .Page "login"}}class="active" {{end}}><a href="/login">login</a></li>	
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">		  
+		      <!--<li {{if eq .Page "us"}}class="active" {{end}}><a href="/us">Us <span class="sr-only">(current)</span></a></li>-->		 
+		      <li><a href="/facebook"><img src="/img/Facebook-black.svg" width="30px"></a></li>
+		      <li><a href="/instagram"><img src="/img/Instagram-black.svg" width="30px"></a></li>		     
+		  </ul>
+	      </div>
+	  </div>
+      </nav>
+      
+      {{if .Alert}}
+      <div class="container">
+	  <div class="alert alert-info alert-dismissable" role="alert">		
+	      <span>{{.Alert}}</span>
+	  </div>	      
+      </div>
+      {{end}}            
+{{end}}    

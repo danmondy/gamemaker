@@ -1,0 +1,144 @@
+{{template "header" .}}
+<style type="text/css">
+  h3 {text-align:center;}
+</style>
+
+<div class="row">
+      <div class="col-md-2">
+	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	      <div class="panel panel-default">
+		  <div class="panel-heading" role="tab" id="headingone">
+		      <h4 class="panel-title">
+			  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#stepone" aria-expanded="true" aria-controls="stepone">STEP ONE</a>
+		      </h4>
+		  </div>
+		  <div id="stepone" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingone">
+		      <div class="panel-body">
+			  <h4>Select Location</h4>
+			  <p>Move map to desire location</p>
+			  <h4>Zoom in or out</h4>
+			  <p>Scroll or use the buttons in lower right set the zoom</P>
+			  <h4>Selct Dimension</h4>
+			  <form>
+			      Dimension<br>
+			      <input type="radio" name="dimension" value="30x40" checked>30" x 40"<br>
+			      <input type="radio" name="dimension" value="12x36">12" x 36"<br>
+			      <input type="radio" name="dimension" value="24x24">24" x 24"<br>	  
+			  </form>
+			  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#steptwo" aria-expanded="true" aria-controls="steptwo">Continue</button>
+		      </div>
+		  </div>
+	      </div>
+	      <div class="panel panel-default">
+		  <div class="panel-heading" role="tab" id="headingtwo">
+		      <h4 class="panel-title">
+			  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#steptwo" aria-expanded="false" aria-controls="steptwo">STEP TWO</a>
+		      </h4>
+		  </div>
+		  <div id="steptwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingtwo">
+		      <div class="panel-body">
+			  <h4>Style Your Map</h4>			  
+			  <form>
+			      Display On Map:<br>
+			      <input type="checkbox" name="Titles"  checked>Labels<br>
+			      <input type="checkbox" name="Roads"  checked>Roads<br>
+			      <input type="checkbox" name="Terrain">>Terrain<br>
+			      <input type="checkbox" name="Parks">Parks<br>
+			      <input type="checkbox" name="Sattelite">Sattelite<br>
+			  </form>
+			  <button class="btn btn-primary" data-toggle="collapse" data-parent="#accordion" href="#stepthree" aria-expanded="false" aria-controls="stepthree">Continue</button>			  
+		      </div>
+		  </div>
+	      </div>
+	      <div class="panel panel-default">
+		  <div class="panel-heading" role="tab" id="headingthree">
+		      <h4 class="panel-title">
+			  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#stepthree" aria-expanded="false" aria-controls="stepthree">STEP THREE</a>
+		      </h4>
+		  </div>
+		  <div id="stepthree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingthree">
+		      <div class="panel-body">
+			  <h4>Select Location</h4>
+			  <p>Move map to desire location</p>
+			  <h4>Zoom in or out</h4>
+			  <p>Scroll or use the buttons in lower right set the zoom</P>
+			  <h4>Selct Dimension</h4>
+			  <form>
+			      Dimension<br>
+			      <input type="radio" name="dimension" value="30x40" checked>30x40<br>
+			      <input type="radio" name="dimension" value="12x36">12x36<br>
+			      <input type="radio" name="dimension" value="24x24">24x24<br>	  
+			  </form>
+			  <button class="btn btn-primary">Continue</button>
+		      </div>
+		  </div>
+	      </div>
+	  </div>
+      </div>
+      <div class="col-md-10" id="map"></div>
+    </div>    
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script language="javascript" type="text/javascript">
+      var styleArray = [
+	  {
+	      featureType: "all",
+	      stylers: [
+		  { saturation: -80 }
+	      ]
+	  },{
+	      featureType: "road.arterial",
+	      elementType: "geometry",
+	      stylers: [
+		  { hue: "#00ffee" },
+		  { saturation: 50 }
+	      ]
+	  },{
+	      featureType: "poi.business",
+	      elementType: "labels",
+	      stylers: [
+		  { visibility: "off" }
+	      ]
+	  }
+      ];
+      var center = {lat: 32.7954, lng: -79.9423};
+      var map;
+
+     function initMap() {
+	  // Create a map object and specify the DOM element for display.
+	  map = new google.maps.Map(document.getElementById('map'), {
+	      center: center,
+              scrollwheel: false,
+	      styles: styleArray,
+              zoom: 12
+	  });
+     }
+     
+     $(document).ready(function() {
+	  $('input[type=radio][name=dimension]').change(function() {
+	     if (this.value == '24x24') {
+		 center = map.getCenter();		 
+		 $('#map').width("600px");
+		 $('#map').height("600px");//alert("Allot Thai Gayo Bhai");
+		 initMap();
+	     }
+	     else if (this.value == '30x40') {		 
+		 center = map.getCenter();		 
+		 $('#map').width("800px");
+		 $('#map').height("600px");//alert("Allot Thai Gayo Bhai");
+		 initMap();
+	     }
+	     else if (this.value == '12x36') {		 
+		 center = map.getCenter();		 
+		 $('#map').width("900px");
+		 $('#map').height("300px");//alert("Allot Thai Gayo Bhai");
+		 initMap();
+	     }
+	 });	
+     });
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2nH_ky_ouMJEw9ODEPovRwpcP6gS3KuU&callback=initMap">
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+{{template "header" .}}
+
+<style>
+  .emp-container{
+    position:relative;
+    padding: 10px;
+  }
+  
+  .employee {
+      height:250px;
+      width:250px;
+      margin:auto;
+      padding:10px;
+      background-color: rgba(0, 0, 0, .8);
+      color:#FFF;
+      text-align:center;
+      border-radius: 150px;
+  }
+ 
+  .blurb{
+  position: relative;
+  bottom:10px;
+  }
+</style>
+<div class="container">
+    <div class="row">
+	<div class="col-xs-12">
+	    <h1>Stylists—</h1>
+	</div>
+  {{range .Model}}
+	<div class="col-sm-6 col-md-4 col-lg-3 emp-container">
+	    <div class=" employee" style="background:linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url('/img/{{.Img}}')">
+		<span class="blurb">
+		    <h3>{{.Name}}</h3>
+		    <div>{{.About}}</div>
+		    <div>{{PrettyYear .StartDate}} {{PrettyMonth .StartDate}}</div>
+		    <div>{{.Role}}</div>
+		</span>
+	    </div>
+	</div>
+	{{end}}	
+    </div>
+    <div class="row">
+	<div div class="col-xs-12">
+       <h1>Staff—</h1>
+       </div></div>
+</div>    
+  </div>
+{{template "footer"}}
